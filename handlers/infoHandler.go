@@ -41,6 +41,7 @@ func InfoHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Henter iso-koden fra URL-queryen
 	iso := r.URL.Query().Get("iso")
+	iso = strings.TrimPrefix(r.URL.Path, "/countryinfo/v1/info/")
 	if len(iso) != 2 {
 		http.Error(w, "Iso-2 must be a 2 letter code", http.StatusBadRequest)
 		return
